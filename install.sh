@@ -5,7 +5,7 @@ command_exists() {
 }
 
 error() {
-  echo "\033[31mError: $@\033[m" >&2
+  echo ${RED}"Error: $@"${RESET} >&2
 }
 
 setup_colors() {
@@ -55,20 +55,19 @@ download_file() {
     exit 1
   fi
 }
-error "TEST"
-exit 0
+
 setup_colors
-install_package "git"
-install_package "zsh"
+#install_package "git"
+#install_package "zsh"
 
 # Install Oh My ZSH
-run_remoute_script "https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh"
+#run_remoute_script "https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh"
 
 # Install NVM
-run_remoute_script "https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh"
-install_package "yarn --no-install-recommends"
+#run_remoute_script "https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh"
+#install_package "yarn --no-install-recommends"
 
-install_package "htop"
+#install_package "htop"
 
 # Install ranger
 install_package "ranger"
