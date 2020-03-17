@@ -49,7 +49,7 @@ run_remoute_script() {
 
 load_configs() {
   git clone https://github.com/serhiichuk/linux-setup.git
-  cp -r -n ./linux-setup/user/* ~
+  cp -r -n /linux-setup/user/.* ~
   rm -rf ./linux-setup
 }
 
