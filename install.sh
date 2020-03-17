@@ -47,31 +47,18 @@ run_remoute_script() {
   fi
 }
 
-download_file() {
-  if command_exists "curl"; then
-    curl --compressed -q "$@"
-  else
-    error "'curl' is not installed"
-    exit 1
-  fi
+load_configs() {
+  git clone https://github.com/serhiichuk/linux-setup.git
+  cp -r -n ./linux-setup/user/* ~
+  rm -rf ./linux-setup
 }
 
 setup_colors
-#install_package "git"
-#install_package "zsh"
+
+install_package "git zsh htop ranger yarn"
+load_configs
 
 # Install Oh My ZSH
-#run_remoute_script "https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh"
-
+run_remoute_script "https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh"
 # Install NVM
-#run_remoute_script "https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh"
-#install_package "yarn --no-install-recommends"
-
-#install_package "htop"
-
-# Install ranger
-install_package "ranger"
-echo "set show_hidden true" >> "$HOME/.config/ranger/rc.conf"
-
-
-#download_file -s https://github.com/serhiichuk/linux-configs/tree/master/vpn -o ~/Downloads/test
+run_remoute_script "https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh"
