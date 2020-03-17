@@ -27,11 +27,11 @@ setup_colors() {
   fi
 }
 
-install_package() {
+install_packages() {
   if command_exists "apt"; then
-    apt install "$@"
+    eval "apt install $*"
   elif command_exists "pacman"; then
-    pacman -S "$@"
+    eval "pacman -S $*"
   else
     error "'apt' or 'pacman' is not installed"
     exit 1
@@ -55,10 +55,11 @@ load_configs() {
 
 setup_colors
 
-install_package "git zsh htop ranger yarn"
-load_configs
+install_packages "git zsh htop ranger yarn"
 
 # Install Oh My ZSH
 run_remoute_script "https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh"
 # Install NVM
 run_remoute_script "https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh"
+
+load_configs
